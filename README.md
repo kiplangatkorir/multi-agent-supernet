@@ -15,7 +15,7 @@ This repository implements a **probabilistic agentic supernet** that dynamically
 
 Clone the repository:  
 ```bash
-git clone https://github.com/your-username/multi-agent-supernet.git
+git clone https://github.com/kiplangatkorir/multi-agent-supernet.git
 cd multi-agent-supernet
 ```
 
