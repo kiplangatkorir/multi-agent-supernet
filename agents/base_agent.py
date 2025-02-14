@@ -33,7 +33,7 @@ class BaseAgent:
         """
         complexity = task.get("complexity", 1)
         success_prob = min(1, self.capability / complexity)  # Higher capability = better success rate
-        return np.random.rand() < success_prob  # Simulates success/failure
+        return np.random.rand() < success_prob  
 
     def __repr__(self):
         """ Returns a string representation of the agent. """
