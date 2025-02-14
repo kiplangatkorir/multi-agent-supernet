@@ -1,5 +1,3 @@
-# agents/base_agent.py
-
 import numpy as np
 
 class BaseAgent:
