@@ -1,7 +1,7 @@
 import os
 import sys
-# agents/basic_agent.py
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import numpy as np
 from agents.base_agent import BaseAgent
 
 class BasicAgent(BaseAgent):
