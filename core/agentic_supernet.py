@@ -16,7 +16,7 @@ class AgenticSupernet:
             entropy_weight (float): Weight for entropy regularization to encourage diversity.
         """
         self.agents = agents
-        self.architecture_distribution = np.ones(len(agents)) / len(agents)  # Uniform probability initially
+        self.architecture_distribution = np.ones(len(agents)) / len(agents)  
         self.entropy_weight = entropy_weight  # Encourages diverse agent selection
 
     def update_distribution(self, agent_idx, reward):
