@@ -1,5 +1,3 @@
-# core/agentic_supernet.py
-
 import numpy as np
 import random
 
