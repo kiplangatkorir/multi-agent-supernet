@@ -1,24 +1,17 @@
-Here’s an updated **`README.md`** with the latest **features, metrics tracking, and CLI examples**:  
-
----
 
 ## **🚀 Multi-Agent Supernet: AI Agent Orchestration Kit**  
 
 A flexible AI toolkit for **adaptive multi-agent selection and orchestration**.  
 Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system dynamically selects AI agents for tasks using **probabilistic sampling, reinforcement learning, and cost-aware execution**.  
 
----
-
 ## **🔥 Features**  
-✅ **Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
-✅ **Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
-✅ **Entropy Regularization** – Prevents system collapse into a single agent  
-✅ **Cost-Aware Execution** – Simple tasks use lightweight agents to save resources  
-✅ **Persistent Task Storage** – Uses SQLite to save and manage registered tasks  
-✅ **Task Success Tracking** – Measures agent performance over multiple runs  
-✅ **Visual Insights** – Charts for success rates and agent selection trends  
-
----
+**Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
+**Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
+**Entropy Regularization** – Prevents system collapse into a single agent  
+**Cost-Aware Execution** – Simple tasks use lightweight agents to save resources  
+**Persistent Task Storage** – Uses SQLite to save and manage registered tasks  
+**Task Success Tracking** – Measures agent performance over multiple runs  
+**Visual Insights** – Charts for success rates and agent selection trends  
 
 ## **🛠 Installation**  
 
