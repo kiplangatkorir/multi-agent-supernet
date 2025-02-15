@@ -1,14 +1,10 @@
-# utils/logger.py
-
 import logging
 import os
 
 LOG_FILE = "logs/system.log"
 
-# Ensure the logs directory exists
 os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
 
-# Configure logging
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,
@@ -23,4 +19,4 @@ def log_event(event: str):
         event (str): The event description.
     """
     logging.info(event)
-    print(event)  # Also print to console for real-time feedback
+    print(event)  
