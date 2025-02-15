@@ -3,7 +3,7 @@
 import json
 import os
 
-TASKS_FILE = "tasks.json"  # Persistent storage file
+TASKS_FILE = "tasks.json"  
 
 class TaskManager:
     """ 
