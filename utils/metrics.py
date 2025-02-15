@@ -1,5 +1,3 @@
-# utils/metrics.py
-
 import json
 import os
 
