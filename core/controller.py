@@ -1,50 +1,33 @@
-import random
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from utils.metrics import MetricsTracker
+
+# Initialize the metrics tracker
+metrics_tracker = MetricsTracker()
 
 class Controller:
     """ 
-    Manages task execution, selects agents dynamically, and updates the supernet based on feedback.
+    Manages task execution, selects agents dynamically, and updates metrics.
     """
 
     def __init__(self, supernet):
-        """
-        Initializes the controller with an agentic supernet.
-
-        Args:
-            supernet (AgenticSupernet): The probabilistic agent selection system.
-        """
         self.supernet = supernet
 
     def allocate_agents(self, task):
-        """
-        Selects the best agentic configuration based on task complexity.
-
-        Args:
-            task (dict): Task details including complexity.
-
-        Returns:
-            list: Selected agents for task execution.
-        """
         return self.supernet.sample_architecture(task)
 
     def execute_task(self, task):
-        """
-        Executes a task using selected agents and updates agent probabilities based on success or failure.
-
-        Args:
-            task (dict): Task details including complexity.
-
-        Returns:
-            bool: True if the task succeeded, False otherwise.
-        """
         agents = self.allocate_agents(task)
         print(f"Executing task: {task['name']} with {', '.join(a.name for a in agents)}")
 
-        success = any(agent.execute(task) for agent in agents)  
+        success = any(agent.execute(task) for agent in agents)
+
+        # Update metrics for task success/failure
+        metrics_tracker.update_task_metrics(task["name"], success)
 
         for agent in agents:
-            agent_idx = self.supernet.agents.index(agent)
-            reward = 0.1 if success else -0.05  
-            self.supernet.update_distribution(agent_idx, reward)
+            metrics_tracker.update_agent_metrics(agent.name)
 
         print(f"Task {task['name']} {'succeeded' if success else 'failed'}.\n")
         return success
