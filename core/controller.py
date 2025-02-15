@@ -1,60 +1,53 @@
+# core/controller.py
 
-class TaskManager:
+import random
+
+class Controller:
     """ 
-    A flexible task manager that allows tasks to be defined, registered, and retrieved dynamically.
+    Manages task execution, selects agents dynamically, and updates the supernet based on feedback.
     """
 
-    def __init__(self):
+    def __init__(self, supernet):
         """
-        Initializes an empty task list.
-        """
-        self.tasks = {}
-
-    def register_task(self, name, complexity):
-        """
-        Registers a new task dynamically.
+        Initializes the controller with an agentic supernet.
 
         Args:
-            name (str): Task name.
-            complexity (int): Task complexity level.
+            supernet (AgenticSupernet): The probabilistic agent selection system.
         """
-        if name in self.tasks:
-            raise ValueError(f"Task '{name}' is already registered.")
-        self.tasks[name] = {"name": name, "complexity": complexity}
+        self.supernet = supernet
 
-    def get_task(self, name):
+    def allocate_agents(self, task):
         """
-        Retrieves a task by name.
+        Selects the best agentic configuration based on task complexity.
 
         Args:
-            name (str): The task name.
+            task (dict): Task details including complexity.
 
         Returns:
-            dict: Task details if found, otherwise None.
+            list: Selected agents for task execution.
         """
-        return self.tasks.get(name, None)
+        return self.supernet.sample_architecture(task)
 
-    def list_tasks(self):
+    def execute_task(self, task):
         """
-        Returns a list of all registered tasks.
-
-        Returns:
-            list: A list of task dictionaries.
-        """
-        return list(self.tasks.values())
-
-    def remove_task(self, name):
-        """
-        Removes a task by name.
+        Executes a task using selected agents and updates agent probabilities based on success or failure.
 
         Args:
-            name (str): The task name to remove.
-        """
-        if name in self.tasks:
-            del self.tasks[name]
+            task (dict): Task details including complexity.
 
-    def clear_tasks(self):
+        Returns:
+            bool: True if the task succeeded, False otherwise.
         """
-        Clears all registered tasks.
-        """
-        self.tasks.clear()
+        agents = self.allocate_agents(task)
+        print(f"Executing task: {task['name']} with {', '.join(a.name for a in agents)}")
+
+        success = any(agent.execute(task) for agent in agents)  # At least one agent must succeed
+
+        # Update agent probabilities based on success or failure
+        for agent in agents:
+            agent_idx = self.supernet.agents.index(agent)
+            reward = 0.1 if success else -0.05  # Reinforce success, penalize failure
+            self.supernet.update_distribution(agent_idx, reward)
+
+        print(f"Task {task['name']} {'succeeded' if success else 'failed'}.\n")
+        return success
