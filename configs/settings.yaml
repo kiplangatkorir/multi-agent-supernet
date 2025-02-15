@@ -1,0 +1,23 @@
+# configs/settings.yaml
+
+# General Settings
+entropy_weight: 0.1  # Regularization factor to prevent agent collapse
+num_samples: 3       # Number of agents sampled per task
+
+# Agent Settings
+agents:
+  - name: BasicAgent
+    capability: 1
+    cost: 1
+  - name: MidAgent
+    capability: 5
+    cost: 3
+  - name: ExpertAgent
+    capability: 10
+    cost: 8
+
+# Logging & Debugging
+logging:
+  enabled: true
+  log_level: "INFO"
+  log_file: "logs/system.log"
