@@ -23,7 +23,6 @@ class Controller:
 
         success = any(agent.execute(task) for agent in agents)
 
-        # Update metrics for task success/failure
         metrics_tracker.update_task_metrics(task["name"], success)
 
         for agent in agents:
