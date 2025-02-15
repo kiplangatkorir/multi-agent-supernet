@@ -1,7 +1,5 @@
-# configs/settings.yaml
 
-# General Settings
-entropy_weight: 0.1  # Regularization factor to prevent agent collapse
+entropy_weight: 0.1  
 num_samples: 3       # Number of agents sampled per task
 
 # Agent Settings
