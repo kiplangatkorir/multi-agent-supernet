@@ -13,7 +13,6 @@ agents:
     capability: 10
     cost: 8
 
-# Logging & Debugging
 logging:
   enabled: true
   log_level: "INFO"
