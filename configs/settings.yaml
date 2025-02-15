@@ -1,6 +1,6 @@
 
 entropy_weight: 0.1  
-num_samples: 3       # Number of agents sampled per task
+num_samples: 3       
 
 # Agent Settings
 agents:
