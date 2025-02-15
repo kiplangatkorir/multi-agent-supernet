@@ -1,0 +1,63 @@
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import json
+import random
+from core.task_manager import TaskManager
+from core.controller import Controller
+from core.agentic_supernet import AgenticSupernet
+from agents.basic_agent import BasicAgent
+from agents.mid_agent import MidAgent
+from agents.expert_agent import ExpertAgent
+from utils.metrics import MetricsTracker
+from utils.visualization import plot_task_success_rates, plot_agent_selection_counts
+from utils.logger import log_event
+
+EXPERIMENT_RESULTS_FILE = "experiments/results/experiment_results.json"
+
+def run_experiment(num_runs=10):
+    """
+    Runs an experiment by executing multiple tasks and tracking results.
+
+    Args:
+        num_runs (int): Number of iterations for the experiment.
+    """
+    os.makedirs("experiments/results", exist_ok=True)
+    
+    task_manager = TaskManager()
+    metrics_tracker = MetricsTracker()
+    agents = [BasicAgent(), MidAgent(), ExpertAgent()]
+    supernet = AgenticSupernet(agents)
+    controller = Controller(supernet)
+
+    task_manager.register_task("Simple Arithmetic", complexity=1)
+    task_manager.register_task("Web Navigation", complexity=5)
+    task_manager.register_task("Advanced Code Generation", complexity=10)
+
+    results = {"tasks": {}, "agents": {}}
+
+    for _ in range(num_runs):
+        tasks = task_manager.list_tasks()
+        for task in tasks:
+            task_name = task["name"]
+            success = controller.execute_task(task)
+            
+            metrics_tracker.update_task_metrics(task_name, success)
+            for agent in agents:
+                metrics_tracker.update_agent_metrics(agent.name)
+
+    for task in task_manager.list_tasks():
+        results["tasks"][task["name"]] = {
+            "success_rate": metrics_tracker.get_task_success_rate(task["name"])
+        }
+
+    for agent in agents:
+        results["agents"][agent.name] = metrics_tracker.get_agent_selection_count(agent.name)
+
+    with open(EXPERIMENT_RESULTS_FILE, "w") as file:
+        json.dump(results, file, indent=4)
+
+    log_event(f"Experiment completed. Results saved to {EXPERIMENT_RESULTS_FILE}")
+
+    plot_task_success_rates()
+    plot_agent_
