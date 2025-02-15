@@ -1,8 +1,6 @@
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-# experiments/run_experiment.py
-
 import sys
 import os
 import json
@@ -19,7 +17,6 @@ from utils.logger import log_event
 
 EXPERIMENT_RESULTS_FILE = "experiments/results/experiment_results.json"
 
-# Ensure Python finds the correct module paths
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 def run_experiment(num_runs=10):
@@ -39,7 +36,6 @@ def run_experiment(num_runs=10):
     supernet = AgenticSupernet(agents)
     controller = Controller(supernet)
 
-    # Register example tasks
     print("📌 Registering tasks...")
     task_manager.register_task("Simple Arithmetic", complexity=1)
     task_manager.register_task("Web Navigation", complexity=5)
@@ -56,7 +52,6 @@ def run_experiment(num_runs=10):
             task_name = task["name"]
             success = controller.execute_task(task)
             
-            # Update metrics
             metrics_tracker.update_task_metrics(task_name, success)
             for agent in agents:
                 metrics_tracker.update_agent_metrics(agent.name)

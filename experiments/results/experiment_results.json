@@ -1,24 +1,19 @@
 {
     "tasks": {
-        "Data Cleaning": {
-            "success": 20,
-            "failure": 1
-        },
         "Document Summarization": {
-            "success": 20,
-            "failure": 0
+            "success_rate": 1.0
+        },
+        "Data Cleaning": {
+            "success_rate": 0.9523809523809523
         },
         "Simple Arithmetic": {
-            "success": 20,
-            "failure": 0
+            "success_rate": 1.0
         },
         "Web Navigation": {
-            "success": 19,
-            "failure": 1
+            "success_rate": 0.95
         },
         "Advanced Code Generation": {
-            "success": 13,
-            "failure": 7
+            "success_rate": 0.65
         }
     },
     "agents": {
