@@ -56,7 +56,6 @@ def run_experiment(num_runs=10):
             for agent in agents:
                 metrics_tracker.update_agent_metrics(agent.name)
 
-    # Collect final results
     for task in task_manager.list_tasks():
         results["tasks"][task["name"]] = {
             "success_rate": metrics_tracker.get_task_success_rate(task["name"])
@@ -65,14 +64,12 @@ def run_experiment(num_runs=10):
     for agent in agents:
         results["agents"][agent.name] = metrics_tracker.get_agent_selection_count(agent.name)
 
-    # Save results to JSON
     with open(EXPERIMENT_RESULTS_FILE, "w") as file:
         json.dump(results, file, indent=4)
 
     print(f"\n✅ Experiment completed. Results saved to `{EXPERIMENT_RESULTS_FILE}`")
     log_event(f"Experiment completed. Results saved to {EXPERIMENT_RESULTS_FILE}")
 
-    # Show metrics visualization
     print("📊 Generating visualizations...")
     plot_task_success_rates()
     plot_agent_selection_counts()
