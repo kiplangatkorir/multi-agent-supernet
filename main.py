@@ -1,14 +1,17 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))  
 import argparse
 import yaml
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from agents.basic_agent import BasicAgent
 from agents.mid_agent import MidAgent
 from agents.expert_agent import ExpertAgent
 from core.agentic_supernet import AgenticSupernet
 from core.controller import Controller
 from core.task_manager import TaskManager
+from utils.metrics import MetricsTracker
+from utils.visualization import plot_task_success_rates, plot_agent_selection_counts
+from utils.logger import log_event
 
 def load_config(config_path="configs/settings.yaml"):
     """
@@ -36,17 +39,23 @@ def initialize_agents():
     """
     return [BasicAgent(), MidAgent(), ExpertAgent()]
 
-def run_task(controller, task_name):
+def run_task(controller, task_name, metrics_tracker):
     """
-    Executes a registered task.
+    Executes a registered task and tracks performance metrics.
 
     Args:
         controller (Controller): The controller managing agent execution.
         task_name (str): Name of the task to execute.
+        metrics_tracker (MetricsTracker): Tracks task and agent performance.
     """
     task = task_manager.get_task(task_name)
     if task:
-        controller.execute_task(task)
+        success = controller.execute_task(task)
+        metrics_tracker.update_task_metrics(task_name, success)
+        log_event(f"Task '{task_name}' {'succeeded' if success else 'failed'}.")
+
+        success_rate = metrics_tracker.get_task_success_rate(task_name)
+        print(f"Success rate for '{task_name}': {success_rate:.2%}")
     else:
         print(f"Task '{task_name}' not found. Please register it first.")
 
@@ -54,6 +63,7 @@ if __name__ == "__main__":
     config = load_config()
 
     task_manager = TaskManager()
+    metrics_tracker = MetricsTracker()
     agents = initialize_agents()
     supernet = AgenticSupernet(agents, entropy_weight=config.get("entropy_weight", 0.1))
     controller = Controller(supernet)
@@ -62,6 +72,7 @@ if __name__ == "__main__":
     parser.add_argument("--register", nargs=2, metavar=("TASK_NAME", "COMPLEXITY"), help="Register a new task")
     parser.add_argument("--list", action="store_true", help="List all registered tasks")
     parser.add_argument("--run", metavar="TASK_NAME", help="Run a registered task")
+    parser.add_argument("--metrics", action="store_true", help="Show task success rates and agent selection frequencies")
     args = parser.parse_args()
 
     if args.register:
@@ -76,4 +87,9 @@ if __name__ == "__main__":
             print(f" - {task['name']} (Complexity: {task['complexity']})")
 
     if args.run:
-        run_task(controller, args.run)
+        run_task(controller, args.run, metrics_tracker)
+
+    if args.metrics:
+        print("📊 Visualizing Task Success Rates & Agent Selection Frequency...")
+        plot_task_success_rates()
+        plot_agent_selection_counts()
