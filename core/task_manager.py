@@ -1,5 +1,3 @@
-# core/task_manager.py
-
 import json
 import os
 
