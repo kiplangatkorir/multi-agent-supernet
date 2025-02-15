@@ -1,5 +1,3 @@
-# core/controller.py
-
 import random
 
 class Controller:
