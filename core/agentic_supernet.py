@@ -29,7 +29,7 @@ class AgenticSupernet:
             reward (float): Reward for the agent (positive for success, negative for failure).
         """
         self.architecture_distribution[agent_idx] += reward
-        self.architecture_distribution /= self.architecture_distribution.sum()  # Normalize
+        self.architecture_distribution /= self.architecture_distribution.sum()  
 
         # Apply entropy regularization to prevent collapse into a single agent
         entropy = -np.sum(self.architecture_distribution * np.log(self.architecture_distribution + 1e-8))
