@@ -1,21 +1,25 @@
+# core/task_manager.py
+
 import json
 import os
 
-TASKS_FILE = "tasks.json"
+TASKS_FILE = "tasks.json"  # Persistent storage file
+
 class TaskManager:
     """ 
-    A flexible task manager that allows tasks to be defined, registered, and retrieved dynamically.
+    A flexible task manager that allows developers to define, register, and retrieve tasks dynamically.
     """
 
     def __init__(self):
         """
-        Initializes an empty task list.
+        Initializes the task manager and loads existing tasks.
         """
         self.tasks = {}
+        self.load_tasks()
 
     def register_task(self, name, complexity):
         """
-        Registers a new task dynamically.
+        Registers a new task dynamically and saves it persistently.
 
         Args:
             name (str): Task name.
@@ -24,6 +28,7 @@ class TaskManager:
         if name in self.tasks:
             raise ValueError(f"Task '{name}' is already registered.")
         self.tasks[name] = {"name": name, "complexity": complexity}
+        self.save_tasks()
 
     def get_task(self, name):
         """
@@ -48,16 +53,33 @@ class TaskManager:
 
     def remove_task(self, name):
         """
-        Removes a task by name.
+        Removes a task by name and updates storage.
 
         Args:
             name (str): The task name to remove.
         """
         if name in self.tasks:
             del self.tasks[name]
+            self.save_tasks()
 
     def clear_tasks(self):
         """
-        Clears all registered tasks.
+        Clears all registered tasks and resets the storage file.
         """
         self.tasks.clear()
+        self.save_tasks()
+
+    def save_tasks(self):
+        """
+        Saves tasks to a JSON file.
+        """
+        with open(TASKS_FILE, "w") as file:
+            json.dump(self.tasks, file, indent=4)
+
+    def load_tasks(self):
+        """
+        Loads tasks from a JSON file if it exists.
+        """
+        if os.path.exists(TASKS_FILE):
+            with open(TASKS_FILE, "r") as file:
+                self.tasks = json.load(file)
