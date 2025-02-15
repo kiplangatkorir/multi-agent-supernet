@@ -50,7 +50,6 @@ class AgenticSupernet:
             self.agents, size=num_samples, p=self.architecture_distribution, replace=True
         )
 
-        # Filter based on capability-cost ratio
         selected_agents = []
         for agent in sampled_agents:
             if agent.capability >= task["complexity"] * random.uniform(0.5, 1.5):
