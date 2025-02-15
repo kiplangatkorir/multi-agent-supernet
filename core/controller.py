@@ -1,7 +1,7 @@
 
 class TaskManager:
     """ 
-    A flexible task manager that allows developers to define, register, and retrieve tasks dynamically.
+    A flexible task manager that allows tasks to be defined, registered, and retrieved dynamically.
     """
 
     def __init__(self):
