@@ -31,7 +31,6 @@ class AgenticSupernet:
         self.architecture_distribution[agent_idx] += reward
         self.architecture_distribution /= self.architecture_distribution.sum()  
 
-        # Apply entropy regularization to prevent collapse into a single agent
         entropy = -np.sum(self.architecture_distribution * np.log(self.architecture_distribution + 1e-8))
         self.architecture_distribution += self.entropy_weight * entropy
         self.architecture_distribution /= self.architecture_distribution.sum()  # Normalize again
