@@ -26,8 +26,6 @@ cd multi-agent-supernet
 pip install -r requirements.txt
 ```
 
----
-
 ## **🚀 Quick Start**  
 
 ### **1️⃣ Register a Task**  
@@ -68,8 +66,6 @@ python main.py --metrics
 ✅ **Output:**  
 📊 **A bar chart of task success rates & agent selection frequencies will appear.**
 
----
-
 ## **📌 Advanced Usage**  
 
 ### **🔄 Running Multiple Tasks in a Script**  
@@ -98,8 +94,6 @@ for task in task_manager.list_tasks():
     controller.execute_task(task["name"])
 ```
 
----
-
 ## **📊 Visualizing Agent Performance**  
 After multiple runs, you can generate **real-time analytics**:
 
@@ -117,31 +111,15 @@ plot_agent_selection_counts()
 
 ✅ **These plots help optimize agent selection and track efficiency over time.**  
 
----
-
 ## **📖 Roadmap & To-Do**  
 - [ ] **FastAPI API** – Expose task management as a web service  
 - [ ] **Docker Support** – Deploy as a scalable microservice  
 - [ ] **Logging & Analytics** – Track agent performance over time  
 - [ ] **Web Dashboard** – Live charts to visualize AI agent trends  
 
----
-
 ## **📝 Citation**  
 If you're inspired by this work, check out the original paper:  
 📄 **Multi-agent Architecture Search via Agentic Supernet** – [arXiv](https://arxiv.org/abs/2502.04180)  
 
----
 
 Would love feedback & contributions! Open an issue or PR. 🚀  
-
----
-
-### **🔹 Why This Update?**
-✅ **Includes Metrics & Visualization** – Easy tracking of AI agent performance.  
-✅ **Improves CLI Documentation** – Shows how to register, run, and monitor tasks.  
-✅ **Adds a Roadmap for Future Development** – Encourages contributions.  
-
----
-
-Would you like to add **REST API examples (FastAPI)** next for real-time tracking? 🚀
