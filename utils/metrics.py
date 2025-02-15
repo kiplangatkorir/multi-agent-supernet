@@ -13,8 +13,8 @@ class MetricsTracker:
         Initializes the metrics tracker and loads existing data.
         """
         self.metrics = {
-            "tasks": {},  # Stores success/failure counts for tasks
-            "agents": {}  # Stores selection counts for each agent
+            "tasks": {},  
+            "agents": {}  
         }
         self.load_metrics()
 
