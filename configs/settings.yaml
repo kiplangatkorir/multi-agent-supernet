@@ -2,7 +2,6 @@
 entropy_weight: 0.1  
 num_samples: 3       
 
-# Agent Settings
 agents:
   - name: BasicAgent
     capability: 1
