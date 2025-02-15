@@ -33,7 +33,7 @@ class AgenticSupernet:
 
         entropy = -np.sum(self.architecture_distribution * np.log(self.architecture_distribution + 1e-8))
         self.architecture_distribution += self.entropy_weight * entropy
-        self.architecture_distribution /= self.architecture_distribution.sum()  # Normalize again
+        self.architecture_distribution /= self.architecture_distribution.sum()  
 
     def sample_architecture(self, task, num_samples=3):
         """
