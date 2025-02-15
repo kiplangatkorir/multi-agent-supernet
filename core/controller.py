@@ -3,7 +3,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from utils.metrics import MetricsTracker
 
-# Initialize the metrics tracker
 metrics_tracker = MetricsTracker()
 
 class Controller:
