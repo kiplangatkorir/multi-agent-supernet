@@ -55,7 +55,6 @@ class AgenticSupernet:
             if agent.capability >= task["complexity"] * random.uniform(0.5, 1.5):
                 selected_agents.append(agent)
 
-        # Avoid overuse of costly agents for simple tasks
         if task["complexity"] <= 3:
             selected_agents = [agent for agent in selected_agents if agent.cost < 5]
 
