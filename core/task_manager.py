@@ -1,7 +1,6 @@
 import os
 import sys
-# main.py
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import argparse
 import yaml
 from agents.basic_agent import BasicAgent
