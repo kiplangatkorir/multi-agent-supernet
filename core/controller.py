@@ -41,12 +41,11 @@ class Controller:
         agents = self.allocate_agents(task)
         print(f"Executing task: {task['name']} with {', '.join(a.name for a in agents)}")
 
-        success = any(agent.execute(task) for agent in agents)  # At least one agent must succeed
+        success = any(agent.execute(task) for agent in agents)  
 
-        # Update agent probabilities based on success or failure
         for agent in agents:
             agent_idx = self.supernet.agents.index(agent)
-            reward = 0.1 if success else -0.05  # Reinforce success, penalize failure
+            reward = 0.1 if success else -0.05  
             self.supernet.update_distribution(agent_idx, reward)
 
         print(f"Task {task['name']} {'succeeded' if success else 'failed'}.\n")
