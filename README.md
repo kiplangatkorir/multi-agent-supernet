@@ -1,60 +1,154 @@
+Here’s an updated **`README.md`** with the latest **features, metrics tracking, and CLI examples**:  
 
-# Multi-Agent Supernet   
+---
 
-An adaptive **multi-agent system** inspired by the paper *Multi-agent Architecture Search via Agentic Supernet*.  
-This repository implements a **probabilistic agentic supernet** that dynamically selects AI agents based on task complexity using **Monte Carlo sampling, entropy regularization, and cost-aware selection**.
+## **🚀 Multi-Agent Supernet: AI Agent Orchestration Kit**  
 
-##  Key Features  
-**Dynamic Agent Selection** – Tasks are matched with the best agents in real time  
-**Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
-**Entropy Regularization** – Prevents the system from collapsing into a single agent choice  
-**Cost-Aware Execution** – Simple tasks use lightweight agents, saving resources  
-**Reinforcement Learning** – Agents improve selection probabilities over time  
+A flexible AI toolkit for **adaptive multi-agent selection and orchestration**.  
+Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system dynamically selects AI agents for tasks using **probabilistic sampling, reinforcement learning, and cost-aware execution**.  
 
-## 🛠 Installation  
+---
 
-Clone the repository:  
+## **🔥 Features**  
+✅ **Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
+✅ **Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
+✅ **Entropy Regularization** – Prevents system collapse into a single agent  
+✅ **Cost-Aware Execution** – Simple tasks use lightweight agents to save resources  
+✅ **Persistent Task Storage** – Uses SQLite to save and manage registered tasks  
+✅ **Task Success Tracking** – Measures agent performance over multiple runs  
+✅ **Visual Insights** – Charts for success rates and agent selection trends  
+
+---
+
+## **🛠 Installation**  
+
+### **1️⃣ Clone the Repository**  
 ```bash
-git clone https://github.com/kiplangatkorir/multi-agent-supernet.git
+git clone https://github.com/your-username/multi-agent-supernet.git
 cd multi-agent-supernet
 ```
 
-Install dependencies:  
+### **2️⃣ Install Dependencies**  
 ```bash
-pip install numpy
+pip install -r requirements.txt
 ```
 
-## Quick Start  
+---
 
-Run the multi-agent system simulation:  
+## **🚀 Quick Start**  
+
+### **1️⃣ Register a Task**  
 ```bash
-python main.py
+python main.py --register "Document Summarization" 4
+```
+✅ **Output:**  
+```
+Task 'Document Summarization' registered with complexity 4.
 ```
 
-##  Example Output  
-
+### **2️⃣ List Registered Tasks**  
 ```bash
-Executing task: Simple Arithmetic with MidAgent, MidAgent
-Task Simple Arithmetic succeeded.
-
-Executing task: Web Navigation with ExpertAgent
-Task Web Navigation succeeded.
-
-Executing task: Advanced Code Generation with ExpertAgent, ExpertAgent
-Task Advanced Code Generation succeeded.
-
-Final Agent Selection Probabilities: [0.259 0.316 0.425]
+python main.py --list
+```
+✅ **Output:**  
+```
+Registered Tasks:
+ - Document Summarization (Complexity: 4)
 ```
 
-## 📌 To-Do  
-- [ ] **Improve agent collaboration** (e.g., debate, reflection)  
-- [ ] **Implement neural controller** for agent selection  
-- [ ] **Optimize cost-aware penalties**  
+### **3️⃣ Run a Task & Track Performance**  
+```bash
+python main.py --run "Document Summarization"
+```
+✅ **Output:**  
+```
+Executing task: Document Summarization with MidAgent, MidAgent
+Task Document Summarization succeeded.
 
-## 📝 Citation  
+Success rate for 'Document Summarization': 100.00%
+```
+
+### **4️⃣ Show Task Success Rates & Agent Selection Stats**  
+```bash
+python main.py --metrics
+```
+✅ **Output:**  
+📊 **A bar chart of task success rates & agent selection frequencies will appear.**
+
+---
+
+## **📌 Advanced Usage**  
+
+### **🔄 Running Multiple Tasks in a Script**  
+Developers can integrate the toolkit into Python projects:  
+
+```python
+from core.task_manager import TaskManager
+from core.controller import Controller
+from core.agentic_supernet import AgenticSupernet
+from agents.basic_agent import BasicAgent
+from agents.mid_agent import MidAgent
+from agents.expert_agent import ExpertAgent
+
+# Initialize system
+task_manager = TaskManager()
+agents = [BasicAgent(), MidAgent(), ExpertAgent()]
+supernet = AgenticSupernet(agents)
+controller = Controller(supernet)
+
+# Register tasks
+task_manager.register_task("Data Cleaning", complexity=3)
+task_manager.register_task("Multi-Step Reasoning", complexity=7)
+
+# Execute tasks
+for task in task_manager.list_tasks():
+    controller.execute_task(task["name"])
+```
+
+---
+
+## **📊 Visualizing Agent Performance**  
+After multiple runs, you can generate **real-time analytics**:
+
+### **Task Success Rates**
+```python
+from utils.visualization import plot_task_success_rates
+plot_task_success_rates()
+```
+
+### **Agent Selection Frequency**
+```python
+from utils.visualization import plot_agent_selection_counts
+plot_agent_selection_counts()
+```
+
+✅ **These plots help optimize agent selection and track efficiency over time.**  
+
+---
+
+## **📖 Roadmap & To-Do**  
+- [ ] **FastAPI API** – Expose task management as a web service  
+- [ ] **Docker Support** – Deploy as a scalable microservice  
+- [ ] **Logging & Analytics** – Track agent performance over time  
+- [ ] **Web Dashboard** – Live charts to visualize AI agent trends  
+
+---
+
+## **📝 Citation**  
 If you're inspired by this work, check out the original paper:  
 📄 **Multi-agent Architecture Search via Agentic Supernet** – [arXiv](https://arxiv.org/abs/2502.04180)  
 
+---
 
 Would love feedback & contributions! Open an issue or PR. 🚀  
 
+---
+
+### **🔹 Why This Update?**
+✅ **Includes Metrics & Visualization** – Easy tracking of AI agent performance.  
+✅ **Improves CLI Documentation** – Shows how to register, run, and monitor tasks.  
+✅ **Adds a Roadmap for Future Development** – Encourages contributions.  
+
+---
+
+Would you like to add **REST API examples (FastAPI)** next for real-time tracking? 🚀
