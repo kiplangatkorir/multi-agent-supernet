@@ -18,5 +18,9 @@
     "Advanced Code Generation": {
         "name": "Advanced Code Generation",
         "complexity": 10
+    },
+    "Deep Research": {
+        "name": "Deep Research",
+        "complexity": 9
     }
 }
