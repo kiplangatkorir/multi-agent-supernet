@@ -4,7 +4,7 @@
 A flexible AI toolkit for **adaptive multi-agent selection and orchestration**.  
 Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system dynamically selects AI agents for tasks using **probabilistic sampling, reinforcement learning, and cost-aware execution**.  
 
-## **🔥 Features**  
+## ** Features**  
 **Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
 **Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
 **Entropy Regularization** – Prevents system collapse into a single agent  
@@ -13,7 +13,7 @@ Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system 
 **Task Success Tracking** – Measures agent performance over multiple runs  
 **Visual Insights** – Charts for success rates and agent selection trends  
 
-## **🛠 Installation**  
+## ** Installation**  
 
 ### **1️⃣ Clone the Repository**  
 ```bash
@@ -26,7 +26,7 @@ cd multi-agent-supernet
 pip install -r requirements.txt
 ```
 
-## **🚀 Quick Start**  
+## ** Quick Start**  
 
 ### **1️⃣ Register a Task**  
 ```bash
@@ -63,12 +63,12 @@ Success rate for 'Document Summarization': 100.00%
 ```bash
 python main.py --metrics
 ```
-✅ **Output:**  
+ **Output:**  
 📊 **A bar chart of task success rates & agent selection frequencies will appear.**
 
-## **📌 Advanced Usage**  
+## ** Advanced Usage**  
 
-### **🔄 Running Multiple Tasks in a Script**  
+### ** Running Multiple Tasks in a Script**  
 Developers can integrate the toolkit into Python projects:  
 
 ```python
@@ -94,7 +94,7 @@ for task in task_manager.list_tasks():
     controller.execute_task(task["name"])
 ```
 
-## **📊 Visualizing Agent Performance**  
+## ** Visualizing Agent Performance**  
 After multiple runs, you can generate **real-time analytics**:
 
 ### **Task Success Rates**
@@ -109,15 +109,15 @@ from utils.visualization import plot_agent_selection_counts
 plot_agent_selection_counts()
 ```
 
-✅ **These plots help optimize agent selection and track efficiency over time.**  
+ **These plots help optimize agent selection and track efficiency over time.**  
 
-## **📖 Roadmap & To-Do**  
+## ** Roadmap & To-Do**  
 - [ ] **FastAPI API** – Expose task management as a web service  
 - [ ] **Docker Support** – Deploy as a scalable microservice  
 - [ ] **Logging & Analytics** – Track agent performance over time  
 - [ ] **Web Dashboard** – Live charts to visualize AI agent trends  
 
-## **📝 Citation**  
+## ** Citation**  
 If you're inspired by this work, check out the original paper:  
 📄 **Multi-agent Architecture Search via Agentic Supernet** – [arXiv](https://arxiv.org/abs/2502.04180)  
 
