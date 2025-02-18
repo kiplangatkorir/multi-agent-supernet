@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from core.task_manager import TaskManager
 from core.controller import Controller
 from core.agentic_supernet import AgenticSupernet
