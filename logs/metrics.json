@@ -19,6 +19,10 @@
         "Advanced Code Generation": {
             "success": 13,
             "failure": 7
+        },
+        "AI Analysis": {
+            "success": 1,
+            "failure": 0
         }
     },
     "agents": {
