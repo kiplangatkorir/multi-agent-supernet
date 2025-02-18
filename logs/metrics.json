@@ -5,8 +5,8 @@
             "failure": 1
         },
         "Document Summarization": {
-            "success": 20,
-            "failure": 0
+            "success": 21,
+            "failure": 1
         },
         "Simple Arithmetic": {
             "success": 20,

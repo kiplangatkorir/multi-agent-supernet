@@ -22,5 +22,9 @@
     "Deep Research": {
         "name": "Deep Research",
         "complexity": 9
+    },
+    "Feature Engineering": {
+        "name": "Feature Engineering",
+        "complexity": 9
     }
 }
