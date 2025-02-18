@@ -70,6 +70,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Multi-Agent Supernet AI Kit")
     parser.add_argument("--register", nargs=2, metavar=("TASK_NAME", "COMPLEXITY"), help="Register a new task")
+    parser.add_argument("--remove", metavar="TASK_NAME", help="Remove a registered task")
     parser.add_argument("--list", action="store_true", help="List all registered tasks")
     parser.add_argument("--run", metavar="TASK_NAME", help="Run a registered task")
     parser.add_argument("--metrics", action="store_true", help="Show task success rates and agent selection frequencies")
