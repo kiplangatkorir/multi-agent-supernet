@@ -26,5 +26,9 @@
     "Feature Engineering": {
         "name": "Feature Engineering",
         "complexity": 9
+    },
+    "AI Research": {
+        "name": "AI Research",
+        "complexity": 5
     }
 }
