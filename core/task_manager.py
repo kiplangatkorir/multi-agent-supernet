@@ -3,7 +3,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import json
 import os
-from utils.logger import log_event  # 🆕 Import logging utility
+from utils.logger import log_event  
 
 TASKS_FILE = "tasks.json"
 
