@@ -1,1 +1,6 @@
-{}
+{
+    "AI Analysis": {
+        "name": "AI Analysis",
+        "complexity": 4
+    }
+}
