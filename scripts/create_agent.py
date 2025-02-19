@@ -1,5 +1,3 @@
-# scripts/create_agent.py
-
 import os
 
 TEMPLATE = '''from agents.base_agent import BaseAgent
