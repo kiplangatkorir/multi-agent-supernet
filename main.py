@@ -205,3 +205,17 @@ if args.delete_agent:
     else:
         print(f"⚠ Agent '{agent_name}' not found.")
 
+if args.restore_agent:
+    agent_name = args.restore_agent.strip().replace(" ", "")
+
+    # Define paths
+    agents_dir = "agents"
+    recycle_bin = "deleted_agents"
+    deleted_file = f"{recycle_bin}/{agent_name.lower()}_agent.py"
+    agent_file = f"{agents_dir}/{agent_name.lower()}_agent.py"
+
+    if os.path.exists(deleted_file):
+        os.rename(deleted_file, agent_file)  
+        print(f"♻️ Agent '{agent_name}' has been restored successfully.")
+    else:
+        print(f"⚠ No deleted agent found with the name '{agent_name}'.")
