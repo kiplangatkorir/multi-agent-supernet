@@ -1,38 +1,28 @@
-import numpy as np
+# agents/base_agent.py
+from abc import ABC, abstractmethod
 
-class BaseAgent:
-    """ 
-    Base class for all AI agents in the multi-agent supernet.
-    Each agent has a capability level and an execution method.
+class BaseAgent(ABC):
     """
-    
-    def __init__(self, name: str, capability: float, cost: float):
-        """
-        Initializes the agent.
-        
-        Args:
-            name (str): The name of the agent.
-            capability (float): The agent's ability to solve complex tasks.
-            cost (float): The resource cost (e.g., API calls, computation).
-        """
-        self.name = name
-        self.capability = capability
-        self.cost = cost
+    Abstract base class for all AI agents.
+    """
 
+    def __init__(self, name, capability=1, cost=1):
+        self.name = name
+        self.capability = capability  # Strength of the agent
+        self.cost = cost  # Higher cost means better performance but more resource usage
+
+    @abstractmethod
     def execute(self, task):
         """
-        Executes a given task based on the agent's capability.
-
+        Executes a task. This method must be implemented by all agents.
+        
         Args:
-            task (dict): A dictionary with task properties including 'complexity'.
-
+            task (str): The task to perform.
+        
         Returns:
-            bool: True if the task succeeds, False otherwise.
+            str: The result of the task execution.
         """
-        complexity = task.get("complexity", 1)
-        success_prob = min(1, self.capability / complexity)  
-        return np.random.rand() < success_prob  
+        pass
 
     def __repr__(self):
-        """ Returns a string representation of the agent. """
-        return f"{self.name}(Capability={self.capability}, Cost={self.cost})"
+        return f"{self.__class__.__name__}(name={self.name}, capability={self.capability}, cost={self.cost})"
