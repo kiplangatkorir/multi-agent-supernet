@@ -15,3 +15,15 @@ class ExpertAgent(BaseAgent):
         Initializes the ExpertAgent with high capability and higher cost.
         """
         super().__init__(name="ExpertAgent", capability=10, cost=8)
+
+    def execute(self, task):
+        """
+        Executes the given task.
+
+        Args:
+            task (str): The task description.
+
+        Returns:
+            str: The result of task execution.
+        """
+        return f"ExpertAgent executing: {task}"  
