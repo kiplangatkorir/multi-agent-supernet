@@ -3,7 +3,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import os
 
-# Template for generating new agents
 AGENT_TEMPLATE = '''import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -31,22 +30,22 @@ class {class_name}(BaseAgent):
         Returns:
             str: The result of task execution.
         """
-        # Check Memory First
+        # 🧠 Check Memory First
         past_result = self.memory.retrieve(self.name, task)
         if past_result:
-            return f"🔄 Recall: {self.name} remembers '{task}': {past_result}"
+            return f"🔄 Recall: {{self.name}} remembers '{{task}}': {{past_result}}"
 
-        # Query Knowledge Graph
+        # 📚 Query Knowledge Graph
         knowledge = self.knowledge_graph.get_relations(task)
         if knowledge:
-            return f"📚 Found in Knowledge Graph: {task} is related to {knowledge}"
+            return f"📚 Found in Knowledge Graph: {{task}} is related to {{knowledge}}"
 
-        # Process Task
-        result = f"{class_name} executing: {task}"
+        # 🛠 Process Task
+        result = f"{{self.name}} executing: {{task}}"
         
-        # Store in Memory & KG
+        # 🔄 Store in Memory & KG
         self.memory.store(self.name, task, result)
-        self.knowledge_graph.add_fact(task, "processed_by", "{class_name}")
+        self.knowledge_graph.add_fact(task, "processed_by", self.name)
 
         return result
 '''
