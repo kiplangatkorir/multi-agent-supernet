@@ -182,3 +182,19 @@ if args.collaborate:
     result = team.execute_task(task)  # ✅ FIXED: Call execute_task() instead
     print(f"🤝 Collaboration Result: {result}")
 
+if args.delete_agent:
+    agent_name = args.delete_agent.strip().replace(" ", "")
+
+    # Convert to lowercase and add "_agent.py"
+    filename = f"agents/{agent_name.lower()}_agent.py"
+
+    if os.path.exists(filename):
+        confirmation = input(f"⚠ Are you sure you want to delete agent '{agent_name}'? (yes/no): ")
+        if confirmation.lower() == "yes":
+            os.remove(filename)
+            print(f"🗑 Agent '{agent_name}' has been deleted.")
+        else:
+            print("❌ Agent deletion canceled.")
+    else:
+        print(f"⚠ Agent '{agent_name}' not found.")
+
