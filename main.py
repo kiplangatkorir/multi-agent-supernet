@@ -186,15 +186,22 @@ if args.collaborate:
 if args.delete_agent:
     agent_name = args.delete_agent.strip().replace(" ", "")
 
-    # Convert to lowercase and add "_agent.py"
-    filename = f"agents/{agent_name.lower()}_agent.py"
+    # Define paths
+    agents_dir = "agents"
+    recycle_bin = "deleted_agents"
+    agent_file = f"{agents_dir}/{agent_name.lower()}_agent.py"
+    deleted_file = f"{recycle_bin}/{agent_name.lower()}_agent.py"
 
-    if os.path.exists(filename):
+    if os.path.exists(agent_file):
+        if not os.path.exists(recycle_bin):
+            os.makedirs(recycle_bin)  # Create recycle bin if not exists
+
         confirmation = input(f"⚠ Are you sure you want to delete agent '{agent_name}'? (yes/no): ")
         if confirmation.lower() == "yes":
-            os.remove(filename)
-            print(f"🗑 Agent '{agent_name}' has been deleted.")
+            os.rename(agent_file, deleted_file)  # Move to recycle bin
+            print(f"🗑 Agent '{agent_name}' has been moved to the Recycle Bin.")
         else:
             print("❌ Agent deletion canceled.")
     else:
         print(f"⚠ Agent '{agent_name}' not found.")
+
