@@ -3,6 +3,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import numpy as np
 from agents.base_agent import BaseAgent
+from core.knowledge_graph import KnowledgeGraph
 
 class BasicAgent(BaseAgent):
     """ 
@@ -15,6 +16,7 @@ class BasicAgent(BaseAgent):
         Initializes the BasicAgent with low capability and low cost.
         """
         super().__init__(name="BasicAgent", capability=1, cost=1)
+        self.knowledge_graph = KnowledgeGraph()
 
     def execute(self, task):
         """
