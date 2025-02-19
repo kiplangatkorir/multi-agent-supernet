@@ -1,24 +1,21 @@
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import numpy as np
 from agents.base_agent import BaseAgent
+from core.knowledge_graph import KnowledgeGraph
 
 class ExpertAgent(BaseAgent):
-    """ 
-    A high-capability agent for handling complex tasks efficiently.
-    Best suited for reasoning-heavy, resource-intensive tasks.
+    """
+    A high-capability agent that can leverage a knowledge graph for reasoning.
     """
 
     def __init__(self):
-        """
-        Initializes the ExpertAgent with high capability and higher cost.
-        """
         super().__init__(name="ExpertAgent", capability=10, cost=8)
+        self.knowledge_graph = KnowledgeGraph()  # 🆕 Initialize KG
 
     def execute(self, task):
         """
-        Executes the given task.
+        Executes the given task, using the knowledge graph for reasoning.
 
         Args:
             task (str): The task description.
@@ -26,4 +23,12 @@ class ExpertAgent(BaseAgent):
         Returns:
             str: The result of task execution.
         """
-        return f"ExpertAgent executing: {task}"  
+        # Check if knowledge graph has relevant information
+        relations = self.knowledge_graph.get_relations(task)
+        if relations:
+            return f"📚 Knowledge Found: {task} is related to {relations}"
+
+        # Simulate reasoning over a new task
+        result = f"ExpertAgent executing: {task}"
+        self.knowledge_graph.add_fact(task, "resulted_in", result)  # 🆕 Store new knowledge
+        return result
