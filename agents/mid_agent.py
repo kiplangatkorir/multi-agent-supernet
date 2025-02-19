@@ -15,3 +15,15 @@ class MidAgent(BaseAgent):
         Initializes the MidAgent with medium capability and cost.
         """
         super().__init__(name="MidAgent", capability=5, cost=3)
+
+    def execute(self, task):
+        """
+        Executes the given task.
+
+        Args:
+            task (str): The task description.
+
+        Returns:
+            str: The result of task execution.
+        """
+        return f"MidAgent executing: {task}"  # ✅ Implemented!
