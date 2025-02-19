@@ -1,4 +1,3 @@
-# agents/base_agent.py
 from abc import ABC, abstractmethod
 
 class BaseAgent(ABC):
@@ -8,8 +7,8 @@ class BaseAgent(ABC):
 
     def __init__(self, name, capability=1, cost=1):
         self.name = name
-        self.capability = capability  # Strength of the agent
-        self.cost = cost  # Higher cost means better performance but more resource usage
+        self.capability = capability  
+        self.cost = cost 
 
     @abstractmethod
     def execute(self, task):
