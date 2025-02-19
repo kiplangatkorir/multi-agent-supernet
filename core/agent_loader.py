@@ -1,36 +1,47 @@
+import importlib
 import os
+import inspect
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import importlib
-import inspect
-from agents.base_agent import BaseAgent  
+from agents.base_agent import BaseAgent
 
 def load_agents():
     """
-    Dynamically loads all agent classes from the agents directory.
-
+    Dynamically loads all agent classes from the `agents` directory while 
+    ignoring deleted agents that have been moved to the Recycle Bin.
+    
     Returns:
         list: A list of instantiated agent objects.
     """
     agents = []
-    agent_dir = os.path.abspath("agents")  
+    agents_dir = os.path.abspath("agents")
+    recycle_bin = os.path.abspath("deleted_agents")
 
-    if agent_dir not in sys.path:
-        sys.path.append(agent_dir)
+    # Ensure the directory is in the Python path
+    if agents_dir not in sys.path:
+        sys.path.append(agents_dir)
 
-    for file in os.listdir(agent_dir):
-        if file.endswith("_agent.py") and file != "base_agent.py":
-            module_name = f"agents.{file[:-3]}" 
+    for file in os.listdir(agents_dir):
+        agent_path = os.path.join(agents_dir, file)
 
-            try:
-                module = importlib.import_module(module_name)
+        # Ignore non-Python files and deleted agents
+        if not file.endswith("_agent.py") or file == "base_agent.py":
+            continue
 
-                importlib.reload(module)
+        if os.path.exists(os.path.join(recycle_bin, file)):  # ✅ Skip if agent is in Recycle Bin
+            continue
 
-                for name, obj in inspect.getmembers(module, inspect.isclass):
-                    if issubclass(obj, BaseAgent) and obj is not BaseAgent:
-                        agents.append(obj())  
+        module_name = f"agents.{file[:-3]}"  # Remove `.py` extension
 
-            except ModuleNotFoundError as e:
-                print(f"⚠ Error loading agent {file}: {e}")  
+        try:
+            module = importlib.import_module(module_name)
+            importlib.reload(module)  # Ensure fresh reload
+
+            for name, obj in inspect.getmembers(module, inspect.isclass):
+                if issubclass(obj, BaseAgent) and obj is not BaseAgent:
+                    agents.append(obj())  # Instantiate the agent
+
+        except ModuleNotFoundError as e:
+            print(f"⚠ Error loading agent {file}: {e}")
+
     return agents
