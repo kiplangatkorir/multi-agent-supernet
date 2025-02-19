@@ -36,5 +36,19 @@ class Tools:
     @staticmethod
     def fetch_medical_info(condition):
         """Fetches medical information from PubMed."""
-        url = f"https://pubmed.ncbi.nlm.nih.gov/?term={condition}"
+        url = f"https://pubmed.ncbi.nlm.nih.gov/?term={condition.replace(' ', '+')}"
         return f"🔍 Search PubMed for {condition}: {url}"
+
+    @staticmethod
+    def recommend_treatment(condition):
+        """Provides basic treatment recommendations."""
+        treatments = {
+            "headache": "💊 Recommended: Ibuprofen or Acetaminophen.",
+            "fever": "🌡️ Recommended: Rest, hydration, and Paracetamol.",
+            "diabetes": "🍏 Recommended: Insulin therapy & lifestyle changes."
+        }
+        for key, value in treatments.items():
+            if key in condition.lower():
+                return value
+        
+        return f"⚠️ No specific treatment found for '{condition}'. Consult a doctor."

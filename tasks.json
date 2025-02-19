@@ -2,5 +2,9 @@
     "AI Analysis": {
         "name": "AI Analysis",
         "complexity": 4
+    },
+    "Diagnose fever symptoms": {
+        "name": "Diagnose fever symptoms",
+        "complexity": 5
     }
 }
