@@ -2,7 +2,7 @@ import importlib
 import os
 import inspect
 import sys
-from agents.base_agent import BaseAgent  # Ensure we check for inheritance
+from agents.base_agent import BaseAgent  
 
 def load_agents(agent_dir="agents"):
     """
@@ -15,9 +15,8 @@ def load_agents(agent_dir="agents"):
         list: A list of instantiated agent objects.
     """
     agents = []
-    agent_dir = os.path.abspath(agent_dir)  # Normalize path
+    agent_dir = os.path.abspath(agent_dir)  
 
-    # Ensure the directory is in the Python path
     if agent_dir not in sys.path:
         sys.path.append(agent_dir)
 
@@ -28,14 +27,13 @@ def load_agents(agent_dir="agents"):
             try:
                 module = importlib.import_module(module_name)
 
-                # Reload in case of updates
                 importlib.reload(module)
 
                 for name, obj in inspect.getmembers(module, inspect.isclass):
                     if issubclass(obj, BaseAgent) and obj is not BaseAgent:
-                        agents.append(obj())  # Instantiate the agent
+                        agents.append(obj()) 
 
             except Exception as e:
-                print(f"⚠ Error loading agent {file}: {e}")  # Prevent crashes and show error
+                print(f"⚠ Error loading agent {file}: {e}")  
 
     return agents
