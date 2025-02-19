@@ -1,4 +1,6 @@
 import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 TEMPLATE = """from agents.base_agent import BaseAgent
 
