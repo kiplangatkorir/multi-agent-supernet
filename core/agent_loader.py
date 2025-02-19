@@ -1,7 +1,7 @@
-import importlib
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import importlib
 import inspect
 from agents.base_agent import BaseAgent  
 
