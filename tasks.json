@@ -6,5 +6,9 @@
     "Diagnose fever symptoms": {
         "name": "Diagnose fever symptoms",
         "complexity": 5
+    },
+    "Suggest treatment for headache": {
+        "name": "Suggest treatment for headache",
+        "complexity": 4
     }
 }
