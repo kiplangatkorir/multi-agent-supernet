@@ -15,3 +15,15 @@ class BasicAgent(BaseAgent):
         Initializes the BasicAgent with low capability and low cost.
         """
         super().__init__(name="BasicAgent", capability=1, cost=1)
+
+    def execute(self, task):
+        """
+        Executes the given task.
+
+        Args:
+            task (str): The task description.
+
+        Returns:
+            str: The result of task execution.
+        """
+        return f"BasicAgent executing: {task}"  
