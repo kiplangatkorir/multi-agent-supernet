@@ -63,6 +63,7 @@ if __name__ == "__main__":
     parser.add_argument("--list", action="store_true", help="List all registered tasks")
     parser.add_argument("--run", metavar="TASK_NAME", help="Run a registered task")
     parser.add_argument("--metrics", action="store_true", help="Show task success rates and agent selection frequencies")
+    parser.add_argument("--delete-agent", metavar="AGENT_NAME", help="Delete an agent permanently")
 
     # Agent Management
     parser.add_argument("--list-agents", action="store_true", help="List all available agents")
