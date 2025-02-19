@@ -11,7 +11,7 @@ class ExpertAgent(BaseAgent):
 
     def __init__(self):
         super().__init__(name="ExpertAgent", capability=10, cost=8)
-        self.knowledge_graph = KnowledgeGraph()  # 🆕 Initialize KG
+        self.knowledge_graph = KnowledgeGraph()  
 
     def execute(self, task):
         """
