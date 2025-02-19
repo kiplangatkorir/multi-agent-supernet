@@ -23,12 +23,10 @@ class ExpertAgent(BaseAgent):
         Returns:
             str: The result of task execution.
         """
-        # Check if knowledge graph has relevant information
         relations = self.knowledge_graph.get_relations(task)
         if relations:
             return f"📚 Knowledge Found: {task} is related to {relations}"
 
-        # Simulate reasoning over a new task
         result = f"ExpertAgent executing: {task}"
-        self.knowledge_graph.add_fact(task, "resulted_in", result)  # 🆕 Store new knowledge
+        self.knowledge_graph.add_fact(task, "resulted_in", result)   
         return result
