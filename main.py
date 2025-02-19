@@ -177,7 +177,8 @@ if __name__ == "__main__":
         final_result = debate_manager.debate(task, initial_result)
         print(final_result)
 
-    if args.collaborate:
-        task = args.collaborate
-        result = team.assign_subtasks(task)
-        print(f"🤝 Collaboration Result: {result}")
+if args.collaborate:
+    task = args.collaborate
+    result = team.execute_task(task)  # ✅ FIXED: Call execute_task() instead
+    print(f"🤝 Collaboration Result: {result}")
+

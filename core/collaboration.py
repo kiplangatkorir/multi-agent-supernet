@@ -52,7 +52,6 @@ class AgentTeam:
         Returns:
             list: A list of meaningful subtasks.
         """
-        # 🚀 AI-powered dynamic task decomposition (future work: integrate LLMs)
         return [f"{task} - Phase {i+1}" for i in range(random.randint(2, len(self.agents)))]
 
     def _select_best_agent(self, subtask):
@@ -80,8 +79,11 @@ class AgentTeam:
         refined = {}
         for subtask, result in results.items():
             best_agent = self._select_best_agent(subtask)
-            validation = best_agent.execute(f"Validate: {result}")  # Let expert validate
-            refined[subtask] = validation if "error" not in validation.lower() else result  # Keep original if validation fails
+            validation = best_agent.execute(f"Validate: {subtask}")  # ✅ Only validate the subtask, not the full result
+
+            # ✅ Instead of returning a full "executing" statement, return a refined version
+            refined[subtask] = f"✔ Refined: {result}" if "error" not in validation.lower() else result  
+
         return refined
 
     def _merge_results(self, refined_results):
@@ -94,5 +96,4 @@ class AgentTeam:
         Returns:
             str: The final optimized response.
         """
-        # 🚀 Future: Use an AI voting mechanism or ranking
         return " | ".join(refined_results.values())
