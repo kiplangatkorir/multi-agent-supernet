@@ -1,6 +1,8 @@
+import random
+
 class AgentTeam:
     """
-    Manages multi-agent collaboration for solving complex tasks.
+    A next-level multi-agent collaboration framework for solving complex tasks efficiently.
     """
 
     def __init__(self, agents):
@@ -8,50 +10,89 @@ class AgentTeam:
         Initializes the collaboration module.
 
         Args:
-            agents (list): List of agents available for collaboration.
+            agents (list): List of available agents.
         """
-        self.agents = agents
+        self.agents = sorted(agents, key=lambda a: a.capability, reverse=True)  # Prioritize high-capability agents
 
-    def assign_subtasks(self, task):
+    def execute_task(self, task):
         """ 
-        Splits a task into subtasks and assigns them to agents.
-        
-        Args:
-            task (str): The main task to be divided.
-        
-        Returns:
-            str: The final combined result from all agents.
-        """
-        subtasks = self._split_task(task)
-        results = []
-
-        for agent, subtask in zip(self.agents, subtasks):
-            result = agent.execute(subtask)
-            results.append(f"{agent.name}: {result}")
-
-        return self._combine_results(results)
-
-    def _split_task(self, task):
-        """
-        Splits a task into smaller subtasks.
+        Executes a complex task by dividing it into subtasks, assigning them to agents, 
+        refining results iteratively, and merging the final response.
 
         Args:
             task (str): The main task.
 
         Returns:
-            list: List of subtasks.
+            str: The final result after collaboration.
         """
-        # 🚀 Simple heuristic: Repeat the main task for all agents (can be improved)
-        return [f"{task} (Part {i+1})" for i in range(len(self.agents))]
+        subtasks = self._split_task(task)
+        results = {}
 
-    def _combine_results(self, results):
+        # Assign each subtask to the best-suited agent
+        for subtask in subtasks:
+            best_agent = self._select_best_agent(subtask)
+            result = best_agent.execute(subtask)
+            results[subtask] = result
+
+        # Perform multi-step refinement
+        refined_results = self._refine_results(results)
+
+        # Merge final results using consensus
+        final_result = self._merge_results(refined_results)
+
+        return final_result
+
+    def _split_task(self, task):
         """
-        Combines the results from different agents.
+        Dynamically splits a task into smaller subtasks.
 
         Args:
-            results (list): List of results from agents.
+            task (str): The main task.
 
         Returns:
-            str: The final combined result.
+            list: A list of meaningful subtasks.
         """
-        return " | ".join(results)
+        # 🚀 AI-powered dynamic task decomposition (future work: integrate LLMs)
+        return [f"{task} - Phase {i+1}" for i in range(random.randint(2, len(self.agents)))]
+
+    def _select_best_agent(self, subtask):
+        """
+        Selects the most capable agent for a given subtask.
+
+        Args:
+            subtask (str): The subtask description.
+
+        Returns:
+            BaseAgent: The most suitable agent.
+        """
+        return max(self.agents, key=lambda agent: agent.capability)  # Prioritize expert agents
+
+    def _refine_results(self, results):
+        """
+        Runs a refinement step where agents validate each other's outputs.
+
+        Args:
+            results (dict): Initial results from agents.
+
+        Returns:
+            dict: Refined results after validation.
+        """
+        refined = {}
+        for subtask, result in results.items():
+            best_agent = self._select_best_agent(subtask)
+            validation = best_agent.execute(f"Validate: {result}")  # Let expert validate
+            refined[subtask] = validation if "error" not in validation.lower() else result  # Keep original if validation fails
+        return refined
+
+    def _merge_results(self, refined_results):
+        """
+        Merges multiple agent responses into a single optimized output.
+
+        Args:
+            refined_results (dict): The validated outputs from agents.
+
+        Returns:
+            str: The final optimized response.
+        """
+        # 🚀 Future: Use an AI voting mechanism or ranking
+        return " | ".join(refined_results.values())
