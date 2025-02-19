@@ -12,7 +12,7 @@ class AgentTeam:
         Args:
             agents (list): List of available agents.
         """
-        self.agents = sorted(agents, key=lambda a: a.capability, reverse=True)  # Prioritize high-capability agents
+        self.agents = sorted(agents, key=lambda a: a.capability, reverse=True)  
 
     def execute_task(self, task):
         """ 
@@ -28,16 +28,13 @@ class AgentTeam:
         subtasks = self._split_task(task)
         results = {}
 
-        # Assign each subtask to the best-suited agent
         for subtask in subtasks:
             best_agent = self._select_best_agent(subtask)
             result = best_agent.execute(subtask)
             results[subtask] = result
 
-        # Perform multi-step refinement
         refined_results = self._refine_results(results)
 
-        # Merge final results using consensus
         final_result = self._merge_results(refined_results)
 
         return final_result
@@ -64,7 +61,7 @@ class AgentTeam:
         Returns:
             BaseAgent: The most suitable agent.
         """
-        return max(self.agents, key=lambda agent: agent.capability)  # Prioritize expert agents
+        return max(self.agents, key=lambda agent: agent.capability)  
 
     def _refine_results(self, results):
         """
@@ -79,9 +76,8 @@ class AgentTeam:
         refined = {}
         for subtask, result in results.items():
             best_agent = self._select_best_agent(subtask)
-            validation = best_agent.execute(f"Validate: {subtask}")  # ✅ Only validate the subtask, not the full result
+            validation = best_agent.execute(f"Validate: {subtask}")  
 
-            # ✅ Instead of returning a full "executing" statement, return a refined version
             refined[subtask] = f"✔ Refined: {result}" if "error" not in validation.lower() else result  
 
         return refined
