@@ -1,8 +1,8 @@
-
-# **Multi-Agent Supernet: AI Agent Orchestration Kit**  
-
+      
+# **Multi-Agent Supernet: AI Agent Orchestration Kit**   
+ 
 A flexible AI toolkit for **adaptive multi-agent selection and orchestration**.  
-Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system dynamically selects AI agents for tasks using **probabilistic sampling, reinforcement learning, and cost-aware execution**.  
+Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system dynamically selects AI agents for tasks using **probabilistic sampling, reinforcement learning, and cost-aware execution**.    
 
 ## **🔥 Features**  
 ✅ **Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
