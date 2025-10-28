@@ -30,4 +30,22 @@ class MidAgent(BaseAgent):
         Returns:
             str: The result of task execution.
         """
-     
+        # 🧠 Step 1: Check Memory for Past Results
+        past_result = self.memory.retrieve(self.name, task)
+        if past_result:
+            return f"🔄 Recall: {self.name} remembers '{task}': {past_result}"
+
+        # 📚 Step 2: Check Knowledge Graph for Related Facts
+        related_facts = self.knowledge_graph.get_relations(task)
+        if related_facts:
+            return f"📚 Knowledge Found: {task} is related to {related_facts}"
+
+        # 🛠 Step 3: Execute Task
+        result = f"MidAgent executing: {task}"
+
+        # 🔄 Step 4: Store the Result in Memory & Knowledge Graph
+        self.memory.store(self.name, task, result)  # Store in memory
+        self.knowledge_graph.add_fact(task, "performed_by", "MidAgent")
+        self.knowledge_graph.add_fact(task, "resulted_in", result)
+
+        return result
