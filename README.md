@@ -4,7 +4,7 @@
 A flexible AI toolkit for **adaptive multi-agent selection and orchestration**.  
 Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system dynamically selects AI agents for tasks using **probabilistic sampling, reinforcement learning, and cost-aware execution**.    
 
-## ** Features**  
+## Features
  **Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
  **Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
  **Entropy Regularization** – Prevents system collapse into a single agent  
@@ -17,22 +17,22 @@ Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system 
  **Agent Memory & Knowledge Graph** – Agents learn from past tasks  
  **Visual Insights** – Charts for success rates and agent selection trends  
 
-## ** Installation**  
+##  Installation  
 
-### **1️⃣ Clone the Repository**  
+### 1️⃣ Clone the Repository  
 ```bash
 git clone https://github.com/your-username/multi-agent-supernet.git
 cd multi-agent-supernet
 ```
 
-### **2️⃣ Install Dependencies**  
+### 2️⃣ Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-## ** Quick Start**  
+##  Quick Start 
 
-### **1️⃣ Register a Task**  
+### 1️⃣ Register a Task 
 ```bash
 python main.py --register "Document Summarization" 4
 ```
@@ -41,7 +41,7 @@ python main.py --register "Document Summarization" 4
 Task 'Document Summarization' registered with complexity 4.
 ```
 
-### **2️⃣ List Registered Tasks**  
+### 2️⃣ List Registered Tasks  
 ```bash
 python main.py --list
 ```
@@ -51,7 +51,7 @@ Registered Tasks:
  - Document Summarization (Complexity: 4)
 ```
 
-### **3️⃣ Run a Task & Track Performance**  
+### 3️⃣ Run a Task & Track Performance 
 ```bash
 python main.py --run "Document Summarization"
 ```
@@ -63,7 +63,7 @@ Task Document Summarization succeeded.
 Success rate for 'Document Summarization': 100.00%
 ```
 
-### **4️ Auto-Register Tasks**  
+### 4️ Auto-Register Tasks 
 If a task isn’t found, it is **automatically registered**.  
 
 ```bash
@@ -76,17 +76,17 @@ Task 'Analyze stock trends' registered with complexity 5.
 AAPL current price: 182.50
 ```
 
-### **5️⃣ Show Task Success Rates & Agent Selection Stats**  
+### 5️⃣ Show Task Success Rates & Agent Selection Stats
 ```bash
 python main.py --metrics
 ```
  **Output:**  
-**A bar chart of task success rates & agent selection frequencies will appear.**
+**A bar chart of task success rates & agent selection frequencies will appear.*
 
-## ** Creating Custom Agents**  
+## Creating Custom Agents 
 You can create new agents dynamically using the built-in CLI.
 
-### **1️⃣ Create a Medical Agent**  
+### 1️⃣ Create a Medical Agent
 ```bash
 python scripts/create_agent.py
 ```
@@ -121,9 +121,9 @@ python main.py --test-agent MedicalAgent
 ```
 ✅ MedicalAgent executed task: MedicalAgent using PubMed API to analyze: Diagnose fever symptoms
 ```
-## ** Advanced Usage**  
+##  Advanced Usage
 
-### **🔄 Running Multiple Tasks in a Script**  
+### 🔄 Running Multiple Tasks in a Script
 Developers can integrate the toolkit into Python projects:  
 
 ```python
@@ -149,7 +149,7 @@ for task in task_manager.list_tasks():
     controller.execute_task(task["name"])
 ```
 
-## **🛠 Tools Available for Agents**
+## Tools Available for Agents
 Each agent type has **access to specialized tools** for real-world execution.
 
 | **Agent Type**       | **Specialization**                         | **Tools** |
@@ -163,16 +163,16 @@ Each agent type has **access to specialized tools** for real-world execution.
 
 ✅ **Agents now interact with real-world APIs to process their tasks!**
 
-## ** Visualizing Agent Performance**  
+## Visualizing Agent Performance
 After multiple runs, you can generate **real-time analytics**:
 
-### **Task Success Rates**
+### Task Success Rates
 ```python
 from utils.visualization import plot_task_success_rates
 plot_task_success_rates()
 ```
 
-### **Agent Selection Frequency**
+### Agent Selection Frequency
 ```python
 from utils.visualization import plot_agent_selection_counts
 plot_agent_selection_counts()
@@ -180,7 +180,7 @@ plot_agent_selection_counts()
 
 ✅ **These plots help optimize agent selection and track efficiency over time.**  
 
-## ** Roadmap & To-Do**  
+##  Roadmap & To-Do 
 - [ ] **FastAPI API** – Expose task management as a web service  
 - [ ] **Docker Support** – Deploy as a scalable microservice  
 - [ ] **Logging & Analytics** – Track agent performance over time  
@@ -188,11 +188,11 @@ plot_agent_selection_counts()
 - [ ] **Agent Collaboration** – Allow multiple agents to work on tasks together  
 - [ ] **Reinforcement Learning** – Improve agent decision-making with experience  
 
-## ** Citation**  
+##  Citation 
 If you're inspired by this work, check out the original paper:  
  **Multi-agent Architecture Search via Agentic Supernet** – [arXiv](https://arxiv.org/abs/2502.04180)  
 
-## ** Contribute & Get Involved**
+## Contribute & Get Involved
 We welcome contributions from developers and AI enthusiasts!  
 🔹 **Open an issue or PR** to suggest improvements  
 🔹 **Fork the repo** and build custom agents  
