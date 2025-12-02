@@ -4,20 +4,20 @@
 A flexible AI toolkit for **adaptive multi-agent selection and orchestration**.  
 Inspired by *Multi-agent Architecture Search via Agentic Supernet*, this system dynamically selects AI agents for tasks using **probabilistic sampling, reinforcement learning, and cost-aware execution**.    
 
-## **🔥 Features**  
-✅ **Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
-✅ **Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
-✅ **Entropy Regularization** – Prevents system collapse into a single agent  
-✅ **Cost-Aware Execution** – Simple tasks use lightweight agents to save resources  
-✅ **Agent Specialization** – Each agent has unique capabilities and tools  
-✅ **Real-World APIs** – Agents use **Finance, Research, Security, and Medical APIs**  
-✅ **Persistent Task Storage** – Uses SQLite to save and manage registered tasks  
-✅ **Task Auto-Registration** – Missing tasks are automatically registered  
-✅ **Task Success Tracking** – Measures agent performance over multiple runs  
-✅ **Agent Memory & Knowledge Graph** – Agents learn from past tasks  
-✅ **Visual Insights** – Charts for success rates and agent selection trends  
+## ** Features**  
+ **Dynamic Agent Selection** – Tasks are matched with the best agents in real-time  
+ **Monte Carlo Sampling** – Ensures efficient, adaptive agent selection  
+ **Entropy Regularization** – Prevents system collapse into a single agent  
+ **Cost-Aware Execution** – Simple tasks use lightweight agents to save resources  
+ **Agent Specialization** – Each agent has unique capabilities and tools  
+ **Real-World APIs** – Agents use **Finance, Research, Security, and Medical APIs**  
+ **Persistent Task Storage** – Uses SQLite to save and manage registered tasks  
+ **Task Auto-Registration** – Missing tasks are automatically registered  
+ **Task Success Tracking** – Measures agent performance over multiple runs  
+ **Agent Memory & Knowledge Graph** – Agents learn from past tasks  
+ **Visual Insights** – Charts for success rates and agent selection trends  
 
-## **🛠 Installation**  
+## ** Installation**  
 
 ### **1️⃣ Clone the Repository**  
 ```bash
@@ -30,13 +30,13 @@ cd multi-agent-supernet
 pip install -r requirements.txt
 ```
 
-## **🚀 Quick Start**  
+## ** Quick Start**  
 
 ### **1️⃣ Register a Task**  
 ```bash
 python main.py --register "Document Summarization" 4
 ```
-✅ **Output:**  
+ **Output:**  
 ```
 Task 'Document Summarization' registered with complexity 4.
 ```
@@ -45,7 +45,7 @@ Task 'Document Summarization' registered with complexity 4.
 ```bash
 python main.py --list
 ```
-✅ **Output:**  
+ **Output:**  
 ```
 Registered Tasks:
  - Document Summarization (Complexity: 4)
@@ -63,7 +63,7 @@ Task Document Summarization succeeded.
 Success rate for 'Document Summarization': 100.00%
 ```
 
-### **4️⃣ Auto-Register Tasks**  
+### **4️ Auto-Register Tasks**  
 If a task isn’t found, it is **automatically registered**.  
 
 ```bash
@@ -71,19 +71,19 @@ python main.py --run "Analyze stock trends"
 ```
 ✅ **Output:**  
 ```
-⚠ Task 'Analyze stock trends' not found. Auto-registering...
-✅ Task 'Analyze stock trends' registered with complexity 5.
-📈 AAPL current price: 182.50
+Task 'Analyze stock trends' not found. Auto-registering...
+Task 'Analyze stock trends' registered with complexity 5.
+AAPL current price: 182.50
 ```
 
 ### **5️⃣ Show Task Success Rates & Agent Selection Stats**  
 ```bash
 python main.py --metrics
 ```
-✅ **Output:**  
-📊 **A bar chart of task success rates & agent selection frequencies will appear.**
+ **Output:**  
+**A bar chart of task success rates & agent selection frequencies will appear.**
 
-## **🤖 Creating Custom Agents**  
+## ** Creating Custom Agents**  
 You can create new agents dynamically using the built-in CLI.
 
 ### **1️⃣ Create a Medical Agent**  
@@ -105,7 +105,7 @@ python main.py --list-agents
 ```
 ✅ **Output:**  
 ```
-📋 Available Agents:
+Available Agents:
  - BasicAgent (Capability: 1, Cost: 1)
  - MidAgent (Capability: 5, Cost: 3)
  - ExpertAgent (Capability: 10, Cost: 8)
@@ -121,7 +121,7 @@ python main.py --test-agent MedicalAgent
 ```
 ✅ MedicalAgent executed task: MedicalAgent using PubMed API to analyze: Diagnose fever symptoms
 ```
-## **📌 Advanced Usage**  
+## ** Advanced Usage**  
 
 ### **🔄 Running Multiple Tasks in a Script**  
 Developers can integrate the toolkit into Python projects:  
@@ -163,7 +163,7 @@ Each agent type has **access to specialized tools** for real-world execution.
 
 ✅ **Agents now interact with real-world APIs to process their tasks!**
 
-## **📊 Visualizing Agent Performance**  
+## ** Visualizing Agent Performance**  
 After multiple runs, you can generate **real-time analytics**:
 
 ### **Task Success Rates**
@@ -180,7 +180,7 @@ plot_agent_selection_counts()
 
 ✅ **These plots help optimize agent selection and track efficiency over time.**  
 
-## **📖 Roadmap & To-Do**  
+## ** Roadmap & To-Do**  
 - [ ] **FastAPI API** – Expose task management as a web service  
 - [ ] **Docker Support** – Deploy as a scalable microservice  
 - [ ] **Logging & Analytics** – Track agent performance over time  
@@ -188,11 +188,11 @@ plot_agent_selection_counts()
 - [ ] **Agent Collaboration** – Allow multiple agents to work on tasks together  
 - [ ] **Reinforcement Learning** – Improve agent decision-making with experience  
 
-## **📝 Citation**  
+## ** Citation**  
 If you're inspired by this work, check out the original paper:  
-📄 **Multi-agent Architecture Search via Agentic Supernet** – [arXiv](https://arxiv.org/abs/2502.04180)  
+ **Multi-agent Architecture Search via Agentic Supernet** – [arXiv](https://arxiv.org/abs/2502.04180)  
 
-## **🚀 Contribute & Get Involved**
+## ** Contribute & Get Involved**
 We welcome contributions from developers and AI enthusiasts!  
 🔹 **Open an issue or PR** to suggest improvements  
 🔹 **Fork the repo** and build custom agents  
